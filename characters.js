@@ -77,6 +77,7 @@ var BRAWL_QUIZ_CHARACTERS = {
     "MR-P": "ミスターP",
     "NANI": "ナーニ",
     "NITA": "ニタ",
+    "NORI": "ノリ",
     "OLLIE": "オーリー",
     "OTIS": "オーティス",
     "PAM": "パム",
@@ -96,11 +97,13 @@ var BRAWL_QUIZ_CHARACTERS = {
     "SPIKE": "スパイク",
     "SPROUT": "スプラウト",
     "SQUEAK": "スクウィーク",
+    "STARR-NOVA": "スターノブァ",
     "STU": "ストゥー",
     "SURGE": "サージ",
     "TARA": "タラ",
     "TICK": "ティック",
     "TRUNK": "トランク",
+    "WENDY": "ウェンディ",
     "WILLOW": "ウィロー",
     "ZIGGY": "ジギー"
   },
@@ -131,7 +134,7 @@ var BRAWL_QUIZ_CHARACTERS = {
       ]
     },
     {
-      name: "スターノヴァ",
+      name: "スターノブァ",
       en: "Starr-Nova",
       color: "#fe5e72",
       imageUrls: [
