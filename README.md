@@ -1,41 +1,48 @@
-# Brawl Stars Character Quiz (Django)
+# ブロスタ キャラクター当てクイズ（静的サイト）
 
-Guess the Brawl Stars brawler from the image — four English-name multiple choice options.
-The server manages roster fetch, question selection, and scoring.
+画像を見てブロスタのキャラクターを当てる 4 択クイズです。  
+**プレーンな HTML / CSS / JavaScript** だけで動作し、**GitHub Pages** で公開できます（Django は不要です）。
 
-> **Note:** GitHub Pages cannot host Django.
-> Run locally (or on any WSGI/ASGI server) for now.
-> The old static site lives in [`legacy_static/`](./legacy_static/).
+## 公開 URL（Pages）
 
-## Requirements
+マージ後・Pages 有効化後:
 
-- Python 3.10+ (3.12 / 3.13 recommended)
-- Internet access (loads [BrawlAPI](https://api.brawlapi.com/v1/brawlers) on startup / cache refresh)
+**https://zaorepop-ops.github.io/brawl-quiz/**
 
-## Setup (local)
+## GitHub Pages の有効化
+
+まだ有効でない場合:
+
+1. リポジトリの **Settings → Pages**
+2. **Source**: Deploy from a branch
+3. **Branch**: `main` / **Folder**: `/ (root)`
+4. Save
+
+数分待つと上記 URL でクイズが開きます。
+
+## ローカルで確認
+
+静的ファイルだけなので、ルートで簡易サーバを立てるだけで OK です。
 
 ```bash
-cd /path/to/brawl-quiz
-python3 -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+# 例: Python
+python3 -m http.server 8080
+# ブラウザで http://127.0.0.1:8080/
 ```
 
-Open http://127.0.0.1:8000/ in your browser.
+主なファイル:
 
-## Architecture
+- `index.html` — 画面
+- `styles.css` — スタイル
+- `script.js` — クイズロジック（BrawlAPI からロースター取得）
+- `characters.js` — 日本語表示名・除外・追加キャラなど
 
-- `config/` — Django project settings
-- `quiz/` — quiz app
-  - `characters_config.py` — exclusions / extras / image slug overrides (display names are English)
-  - `services.py` — BrawlAPI fetch, in-memory cache, question logic
-  - Session stores the answer, score, and question deck
-  - JSON APIs: `/api/start/`, `/api/answer/`, `/api/next/`, `/api/status/`
-  - Front end: `quiz/static/quiz/quiz.js` calls the APIs; UI copy is English
+## Django アーカイブ
 
-## Legacy static site
+以前の Django 版は削除せず **`archive/django/`** に退避してあります。  
+履歴は git に残っています。ローカルで Django を動かす場合はそちらを参照してください。
 
-`legacy_static/` keeps the previous `index.html` / `script.js` / `characters.js` / `styles.css`.
-Use that if you need a GitHub Pages–style static deploy.
+## その他
+
+- Character DB 関連の PR 作業は別ブランチ／未マージです（この静的サイト本体とは独立）。
+- `legacy_static/` はポインタ用です。正規の静的ファイルは **リポジトリ直下** にあります。
